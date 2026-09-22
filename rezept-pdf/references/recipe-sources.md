@@ -4,11 +4,11 @@ Beim Extrahieren zählt: Titel, Zeiten, Zutatenliste (Array), Zubereitungsschrit
 
 ## Webseiten (allgemein)
 
-Nutze `WebFetch` mit einem klaren Extraktionsprompt. Beispiel:
+Nutze `web_extract` auf die Rezept-URL und extrahiere aus dem zurückgegebenen Markdown. Zielstruktur:
 
 > „Extrahiere aus dieser Seite den Rezepttitel, die Vorbereitungszeit, die Kochzeit, die Zutatenliste (als JSON-Array von Strings, eine Zutat pro Eintrag inklusive Menge und Einheit) und die Zubereitungsschritte (als JSON-Array von Absätzen). Gib nur das JSON zurück, keine Einleitung."
 
-Viele Rezeptseiten haben strukturierte Daten (`application/ld+json` mit `@type: Recipe`), wovon `WebFetch` meistens profitiert. Bei Deutschsprachigkeit auf korrekt geparste Mengenangaben achten (500 g vs. 500g).
+Viele Rezeptseiten haben strukturierte Daten (`application/ld+json` mit `@type: Recipe`), was die Extraktion deutlich zuverlässiger macht. Bei Deutschsprachigkeit auf korrekt geparste Mengenangaben achten (500 g vs. 500g).
 
 ## Spezifische Seiten
 
@@ -33,7 +33,7 @@ Englischsprachig. Ins Deutsche übersetzen beim Extrahieren. Typische Übersetzu
 
 ## Notion
 
-Die `mcp__...__notion-fetch` Tools holen Seitenblöcke. Für ein Notion-Rezept:
+Der `notion`-Skill (ntn CLI / Notion-API) holt die Seitenblöcke. Für ein Notion-Rezept:
 
 1. Wenn der Nutzer eine URL/Seiten-ID angibt, direkt fetchen.
 2. Ansonsten `notion-search` mit dem Rezeptnamen.

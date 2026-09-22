@@ -8,10 +8,10 @@ description: "Extrahiert und strukturiert Rezeptinhalte aus Webseiten, Text, Not
 Dieser Skill verarbeitet Rezepte aus verschiedenen Quellen und extrahiert sie in ein standardisiertes Datenformat — auch von Hand geschriebene Rezepte. Er liefert die Daten, mit denen der Skill `rezept-pdf-generator` anschließend ein PDF baut.
 
 ## Eingabenquellen
-- **Webseiten**: Links zu Kochblogs oder Rezept-Plattformen (chefkoch.de, essen-und-trinken.de, bbcgoodfood, etc.) — per `WebFetch`.
+- **Webseiten**: Links zu Kochblogs oder Rezept-Plattformen (chefkoch.de, essen-und-trinken.de, bbcgoodfood, etc.) — per `web_extract`.
 - **Text**: Rezepte als eingefügter oder hochgeladener Text — direkt aus dem Chat.
-- **Notion**: Rezept-Seiten aus Notion — per `notion-fetch`.
-- **Handschriftliche Rezepte**: Fotos von handschriftlichen Rezeptkarten, Notizbüchern oder Zeitschriften — Bild lesen und Text so genau wie möglich abtippen.
+- **Notion**: Rezept-Seiten aus Notion — über den `notion`-Skill (ntn CLI bzw. Notion-API).
+- **Handschriftliche Rezepte**: Fotos von handschriftlichen Rezeptkarten, Notizbüchern oder Zeitschriften — Bild mit `vision_analyze` lesen und Text so genau wie möglich abtippen.
 - **Rezeptfotos**: Fotos von fertigen Rezepten aus Kochbüchern oder Zeitschriften.
 
 ## Wichtig bei handschriftlichen/fotografierten Rezepten

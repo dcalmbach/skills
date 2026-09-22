@@ -33,7 +33,7 @@ Wenn `nutrition_per_serving` fehlt, grob aus den Zutaten schätzen (Größenordn
 
 ## Workflow
 
-1. Bild vorbereiten: Wenn `image_url` gesetzt ist oder der Nutzer eine URL/Datei nennt, dieses Bild verwenden. Bei mehreren Kandidaten den Nutzer per `AskUserQuestion` wählen lassen.
+1. Bild vorbereiten: Wenn `image_url` gesetzt ist oder der Nutzer eine URL/Datei nennt, dieses Bild verwenden. Bei mehreren Kandidaten den Nutzer per `clarify` wählen lassen.
 2. Rezept-JSON in eine Datei schreiben (`recipe.json`).
 3. `scripts/generate_recipe_pdf.py` mit `--json`, `--image` (Pfad oder URL) und `--output` aufrufen. Abhängigkeiten bei Bedarf installieren: `pip install reportlab Pillow` (bei PEP-668-Systemen in einem venv oder mit `--break-system-packages`).
 4. PDF an den Nutzer liefern (Download bereitstellen). `--output` immer explizit setzen. Ohne `--output` schreibt das Skript nach `$REZEPTE_DIR/<slug>.pdf`, sonst nach `./Rezepte/<slug>.pdf` relativ zum Arbeitsverzeichnis — niemals in einen absoluten Systempfad.

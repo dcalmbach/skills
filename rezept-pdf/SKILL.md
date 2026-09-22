@@ -22,8 +22,8 @@ Dieses Skill nimmt Rezeptinhalte aus beliebigen Quellen und erzeugt daraus ein P
 ### Schritt 1 — Rezeptdaten extrahieren
 
 Je nach Quelltyp:
-- **URL (Webseite)**: `WebFetch` mit einem Prompt wie „Extrahiere den Rezepttitel, Vorbereitungszeit, Kochzeit, Zutatenliste (als Array), und die Zubereitungsschritte (als Array von Absätzen). Gib das als JSON zurück.“
-- **Notion-Seite**: `notion-fetch` auf die Seiten-ID/URL, dann die Blöcke auslesen.
+- **URL (Webseite)**: `web_extract` auf die URL, dann aus dem Markdown extrahieren — „Extrahiere den Rezepttitel, Vorbereitungszeit, Kochzeit, Zutatenliste (als Array), und die Zubereitungsschritte (als Array von Absätzen). Gib das als JSON zurück.“
+- **Notion-Seite**: über den `notion`-Skill die Seiten-ID/URL abrufen und die Blöcke auslesen.
 - **Roher Text**: Direkt aus dem Chat extrahieren.
 - **Foto eines Rezepts** (Kochbuch, Zeitschrift, handschriftliche Karte): Bild lesen und Text möglichst genau abtippen — siehe Hinweis oben zu unleserlichen Stellen.
 
@@ -50,11 +50,11 @@ Wenn die Quelle bereits ein Bild mitliefert, dessen URL merken — Kandidat Nr. 
 
 ### Schritt 4 — Weitere Bildkandidaten beschaffen
 
-`WebSearch` mit Suchphrasen wie "<Rezeptname> Rezept chefkoch" oder "<Rezeptname> Foto". 2–3 vielversprechende Bild-URLs identifizieren (direkte CDN-URLs bevorzugen, Google-Thumbnails und Social-Media-Bilder meiden — die brauchen meist Auth oder werden geblockt). Mit `scripts/download_images.py` herunterladen.
+`web_search` mit Suchphrasen wie "<Rezeptname> Rezept chefkoch" oder "<Rezeptname> Foto". 2–3 vielversprechende Bild-URLs identifizieren (direkte CDN-URLs bevorzugen, Google-Thumbnails und Social-Media-Bilder meiden — die brauchen meist Auth oder werden geblockt). Mit `scripts/download_images.py` herunterladen.
 
 ### Schritt 5 — Bilder dem Nutzer zeigen und auswählen lassen
 
-Thumbnails zeigen, dann per `AskUserQuestion`: "Welches Bild soll ins Rezept?" mit den Kandidaten plus "Eigene URL/Datei" und "Ohne Bild".
+Thumbnails zeigen, dann per `clarify`: "Welches Bild soll ins Rezept?" mit den Kandidaten plus "Eigene URL/Datei" und "Ohne Bild".
 
 ### Schritt 6 — PDF generieren
 
@@ -68,7 +68,7 @@ PDF an den Nutzer liefern (Download bereitstellen). Keine lange Nachrede.
 
 ## Mehrfach-Rezepte
 
-Pro Rezept ein eigenes PDF. Bildauswahl per `AskUserQuestion` zu einer Mehrfachfrage bündeln.
+Pro Rezept ein eigenes PDF. Bildauswahl per `clarify` zu einer Mehrfachfrage bündeln.
 
 ## Was nicht tun
 
